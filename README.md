@@ -8,3 +8,4 @@ Temas abordados :metal:
 2. [GraphQL com Go Lang](https://github.com/gdlopes/fullcycle-learnings/tree/main/fullcycle-go-graphql-learning)
 3. [Grpc com Go Lang](https://github.com/gdlopes/fullcycle-learnings/tree/main/fullcycle-grpc-learning)
 4. [Service Discovery com Consul](https://github.com/gdlopes/fullcycle-learnings/tree/main/fullcycle-service-discovery-learning)
+5. [DDD: Modelagem Tática e Patterns](https://github.com/gdlopes/fullcycle-learnings/tree/main/fullcycle-ddd-patterns)
