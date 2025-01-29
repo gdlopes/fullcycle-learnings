@@ -1,5 +1,11 @@
 import Customer from './customer'
 import Address from './address'
+import EventDispatcher from '../event/@shared/event-dispatcher'
+import EnviaConsoleLog1Handler from '../event/customer/handler/envia-console-log-1.handler'
+import EnviaConsoleLog2Handler from '../event/customer/handler/envia-console-log-2.handler'
+import CustomerCreatedEvent from '../event/customer/event/customer-created.event'
+import EnviaConsoleLogHandler from '../event/customer/handler/envia-console-log.handler'
+import CustomerAddressChangedEvent from '../event/customer/event/customer-address-changed.event'
 
 describe('Customer unit tests', () => {
   it('should throw error when id is empty', () => {
@@ -66,4 +72,42 @@ describe('Customer unit tests', () => {
     customer.addRewardPoints(10);
     expect(customer.rewardPoints).toBe(20);
   });
+
+  it('should dispatch event when customer is created', () => {
+    const eventDispatcher = new EventDispatcher();
+    const eventHandler1 = new EnviaConsoleLog1Handler();
+    const eventHandler2 = new EnviaConsoleLog2Handler();
+    const spyEventHandler1 = jest.spyOn(eventHandler1, 'handle');
+    const spyEventHandler2 = jest.spyOn(eventHandler2, 'handle');
+
+    eventDispatcher.register('CustomerCreatedEvent', eventHandler1);
+    eventDispatcher.register('CustomerCreatedEvent', eventHandler2);
+
+    const customerCreatefEvent = new CustomerCreatedEvent({});
+
+    eventDispatcher.notify(customerCreatefEvent)
+
+    expect(spyEventHandler1).toHaveBeenCalled();
+    expect(spyEventHandler2).toHaveBeenCalled();
+  })
+
+  it('should dispatch event when customer address change', () => {
+    const eventDispatcher = new EventDispatcher();
+    const handler = new EnviaConsoleLogHandler();
+    const spyHandler = jest.spyOn(handler, 'handle');
+
+    eventDispatcher.register('CustomerAddressChangedEvent', handler);
+
+    const customer = new Customer('123', 'Jhon');
+    const address = new Address('Rua teste', 123, '02498-123', 'São Paulo');
+
+    const addressChangedEvent = new CustomerAddressChangedEvent({
+      id: customer.id,
+      name: customer.name,
+      address
+    });
+    eventDispatcher.notify(addressChangedEvent);
+
+    expect(spyHandler).toHaveBeenCalled();
+  })
 })
