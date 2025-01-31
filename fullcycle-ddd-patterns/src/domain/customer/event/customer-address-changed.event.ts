@@ -1,5 +1,5 @@
-import EventInterface from "../../@shared/event.interface";
-import Address from '../../../entity/address';
+import EventInterface from "../../../@shared/event.interface";
+import Address from '../value-object/address';
 
 type AddressChangedEvent = {
   id: string;

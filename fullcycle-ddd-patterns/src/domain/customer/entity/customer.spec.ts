@@ -1,11 +1,11 @@
 import Customer from './customer'
-import Address from './address'
-import EventDispatcher from '../event/@shared/event-dispatcher'
-import EnviaConsoleLog1Handler from '../event/customer/handler/envia-console-log-1.handler'
-import EnviaConsoleLog2Handler from '../event/customer/handler/envia-console-log-2.handler'
-import CustomerCreatedEvent from '../event/customer/event/customer-created.event'
-import EnviaConsoleLogHandler from '../event/customer/handler/envia-console-log.handler'
-import CustomerAddressChangedEvent from '../event/customer/event/customer-address-changed.event'
+import Address from '../value-object/address'
+import EnviaConsoleLog1Handler from '../event/handler/envia-console-log-1.handler'
+import EnviaConsoleLog2Handler from '../event/handler/envia-console-log-2.handler'
+import EnviaConsoleLogHandler from '../event/handler/envia-console-log.handler'
+import CustomerAddressChangedEvent from '../event/customer-address-changed.event'
+import EventDispatcher from '../../@shared/event/event-dispatcher'
+import CustomerCreatedEvent from '../event/customer-created.event'
 
 describe('Customer unit tests', () => {
   it('should throw error when id is empty', () => {
